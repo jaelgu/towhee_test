@@ -1,7 +1,6 @@
 import os
 from numpy import linalg as LA
 from towhee import pipeline
-from PIL import Image
 
 encoder = pipeline('image-embedding')
 
@@ -10,8 +9,7 @@ def extract_features(img_dir):
     pics = []
     for x in os.listdir(img_dir):
         img_path = os.path.join(img_dir, x)
-        img = Image.open(img_path)
-        feat = encoder(img)
+        feat = encoder(img_path)
         norm_feat = feat / LA.norm(feat)
         vectors.append(norm_feat.tolist()[0][0])
         pics.append(img_path)
