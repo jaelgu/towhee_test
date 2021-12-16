@@ -17,8 +17,10 @@ def extract_features(img_dir):
         pics.append(img_path)
     return vectors, pics
 
+# Get vectors & image paths
 vectors, names = extract_features(image_dir)
+# Insert vectors into milvus table & build index
 ids = milvus_client.insert(table_name, vectors)
 milvus_client.create_index(table_name)
-mysql_cli.create_mysql_table(table_name)
+# Insert milvus ids & image paths into mysql
 mysql_cli.load_data_to_mysql(table_name, format_data(ids, names))
