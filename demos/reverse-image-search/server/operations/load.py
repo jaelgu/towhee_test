@@ -103,7 +103,7 @@ def load_features(subdir):
                     feat =  y['feat'] / LA.norm(y['feat'])
                     feats.append(feat.tolist())
                     #path = y['path']
-                    path = y['path'].replace('/home/supermicro/下载', '/media/supermicro/DATA1/')
+                    path = y['path'].replace('/home/supermicro/下载', '/data/demos/img-search')
                     imgs.append(path)
                     cache['current'] = i + 1
                     print(f"Extracting feature from No. {i + 1} / {total} images in folder {subdir}")
